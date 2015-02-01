@@ -53,13 +53,6 @@ print_error() {
 }
 
 #
-# Prints a value of the given key ($1) in the given API response ($2).
-#
-get_value() {
-	echo "$2" | grep "\"$1\"" | sed 's/[",]//g' | cut -d: -f2- | sed 's/^ *//'
-}
-
-#
 # Prints an error message to the standard error and exits if the request
 # failed.
 #
@@ -81,6 +74,13 @@ print_error_and_exit_if_request_failed() {
 		print_error "$ERROR_DESCRIPTION"
 		exit 2
 	fi
+}
+
+#
+# Prints a value of the given key ($1) in the given API response ($2).
+#
+get_value() {
+	echo "$2" | grep "\"$1\"" | sed 's/[",]//g' | cut -d: -f2- | sed 's/^ *//'
 }
 
 #
