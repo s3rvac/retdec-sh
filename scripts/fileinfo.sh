@@ -2,7 +2,7 @@
 #
 # Project:   retdec-sh
 # Homepage:  https://github.com/s3rvac/retdec-sh
-# Copyright: (c) 2015 by Petr Zemek <s3rvac@gmail.com>
+# Copyright: (c) 2015 by Petr Zemek <s3rvac@gmail.com> and contributors
 # License:   MIT, see the LICENSE file for more details
 #
 # Description:
