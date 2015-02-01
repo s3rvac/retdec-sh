@@ -1,7 +1,9 @@
 retdec-sh
 =========
 
-Shell scripts for decompiling and analyzing binary files through the [retdec.com](https://retdec.com) decompilation service by using their public REST API.
+Shell scripts for decompiling and analyzing binary files through the
+[retdec.com](https://retdec.com) decompilation service by using their public
+REST API.
 
 Status
 ------
