@@ -1,7 +1,8 @@
 Authors
 =======
 
-retdec-sh is written and maintained by Petr Zemek and various contributors:
+[retdec-sh](https://github.com/s3rvac/retdec-sh) is written and maintained by
+Petr Zemek and various contributors:
 
 Development Lead
 ----------------
