@@ -36,6 +36,8 @@ Development Status
 Although the very basic functionality is there, more features are under
 development.
 
+For a list of changes, see the `CHANGELOG` file.
+
 Requirements
 ------------
 
