@@ -70,6 +70,16 @@ Synopsis:
 For a detailed list of available options, run the scripts with the `-h/--help`
 parameter.
 
+Exit Codes
+----------
+
+The scripts may exit with the following codes.
+
+* `0` - everything went OK,
+* `1` - either [curl](http://curl.haxx.se/) is not installed or the given
+  script parameters are invalid,
+* `2` - there was an error during script runtime (e.g. a decompilation failed).
+
 Contributions
 -------------
 
