@@ -78,6 +78,15 @@ print_error_and_exit_if_request_failed() {
 }
 
 #
+# Sends a request by calling curl with the given arguments.
+#
+# Prints the response, including errors (if any).
+#
+send_request() {
+	curl --silent --show-error --user "$API_KEY:" "$@" 2>&1
+}
+
+#
 # Prints a value of the given key ($1) in the given API response ($2).
 #
 get_value() {
@@ -165,17 +174,12 @@ if [ "$API_KEY" = "not set" ]; then
 fi
 
 #
-# We always call curl with the following parameters.
-#
-CURL="curl --silent --show-error --user $API_KEY:"
-
-#
 # Start a decompilation of the file.
 #
 FILE_NAME=$(basename "$FILE")
-RESPONSE=$($CURL --form "mode=bin" \
+RESPONSE=$(send_request --form "mode=bin" \
 	--form "input=@$FILE;filename=$FILE_NAME" \
-	"$API_URL/decompiler/decompilations" 2>&1)
+	"$API_URL/decompiler/decompilations")
 print_error_and_exit_if_request_failed "$?" "$RESPONSE"
 STATUS_URL=$(get_value "status" "$RESPONSE")
 OUTPUTS_URL=$(get_value "outputs" "$RESPONSE")
@@ -184,7 +188,7 @@ OUTPUTS_URL=$(get_value "outputs" "$RESPONSE")
 # Wait until the decompilation is finished (or fails).
 #
 while true; do
-	RESPONSE=$($CURL "$STATUS_URL" 2>&1)
+	RESPONSE=$(send_request "$STATUS_URL")
 	print_error_and_exit_if_request_failed "$?" "$RESPONSE"
 
 	FAILED=$(get_value "failed" "$RESPONSE")
@@ -206,7 +210,7 @@ done
 #
 # Download the decompiled source code.
 #
-RESPONSE=$($CURL "$OUTPUTS_URL/hll" 2>&1)
+RESPONSE=$(send_request "$OUTPUTS_URL/hll")
 print_error_and_exit_if_request_failed "$?" "$RESPONSE"
 HLL_FILE="$(get_output_file_prefix "$FILE").c"
 echo "$RESPONSE" > "$HLL_FILE"

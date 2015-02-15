@@ -77,6 +77,15 @@ print_error_and_exit_if_request_failed() {
 }
 
 #
+# Sends a request by calling curl with the given arguments.
+#
+# Prints the response, including errors (if any).
+#
+send_request() {
+	curl --silent --show-error --user "$API_KEY:" "$@" 2>&1
+}
+
+#
 # Prints a value of the given key ($1) in the given API response ($2).
 #
 get_value() {
@@ -153,17 +162,12 @@ if [ "$API_KEY" = "not set" ]; then
 fi
 
 #
-# We always call curl with the following parameters.
-#
-CURL="curl --silent --show-error --user $API_KEY:"
-
-#
 # Start an analysis of the file.
 #
 FILE_NAME=$(basename "$FILE")
-RESPONSE=$($CURL --form "verbose=$VERBOSE" \
+RESPONSE=$(send_request --form "verbose=$VERBOSE" \
 	--form "input=@$FILE;filename=$FILE_NAME" \
-	"$API_URL/fileinfo/analyses" 2>&1)
+	"$API_URL/fileinfo/analyses")
 print_error_and_exit_if_request_failed "$?" "$RESPONSE"
 STATUS_URL=$(get_value "status" "$RESPONSE")
 OUTPUT_URL=$(get_value "output" "$RESPONSE")
@@ -172,7 +176,7 @@ OUTPUT_URL=$(get_value "output" "$RESPONSE")
 # Wait until the analysis is finished (or fails).
 #
 while true; do
-	RESPONSE=$($CURL "$STATUS_URL" 2>&1)
+	RESPONSE=$(send_request "$STATUS_URL")
 	print_error_and_exit_if_request_failed "$?" "$RESPONSE"
 
 	FAILED=$(get_value "failed" "$RESPONSE")
@@ -194,6 +198,6 @@ done
 #
 # Print the output from the analysis to the standard output.
 #
-RESPONSE=$($CURL "$OUTPUT_URL" 2>&1)
+RESPONSE=$(send_request "$OUTPUT_URL")
 print_error_and_exit_if_request_failed "$?" "$RESPONSE"
 echo "$RESPONSE"
