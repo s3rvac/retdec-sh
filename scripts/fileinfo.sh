@@ -26,6 +26,7 @@
 VERBOSE=0
 API_KEY=${RETDEC_API_KEY-not set}
 API_URL=${RETDEC_API_URL-https://retdec.com/service/api}
+USER_AGENT="retdec-sh/$(uname -s)"
 
 #
 # Prints a help message to the standard output.
@@ -38,10 +39,11 @@ print_help() {
 	echo "    $0 [OPTIONS] FILE"
 	echo ""
 	echo "Options:"
-	echo "    -k KEY, --api-key KEY   API key to be used (default: $API_KEY)."
-	echo "    -u URL, --api-url URL   URL of the API (default: $API_URL)."
-	echo "    -v,     --verbose       Print all available information about the file."
-	echo "    -h,     --help          Prints this help message and exits."
+	echo "    -g STR, --user-agent STR   User agent string to be used (default: $USER_AGENT)."
+	echo "    -k KEY, --api-key KEY      API key to be used (default: $API_KEY)."
+	echo "    -u URL, --api-url URL      URL of the API (default: $API_URL)."
+	echo "    -v,     --verbose          Print all available information about the file."
+	echo "    -h,     --help             Prints this help message and exits."
 	echo ""
 }
 
@@ -82,7 +84,8 @@ print_error_and_exit_if_request_failed() {
 # Prints the response, including errors (if any).
 #
 send_request() {
-	curl --silent --show-error --user "$API_KEY:" "$@" 2>&1
+	curl --silent --show-error --user "$API_KEY:" --user-agent "$USER_AGENT" \
+		"$@" 2>&1
 }
 
 #
@@ -104,6 +107,17 @@ fi
 # Parse script arguments.
 #
 while [ ! -z "$1" ]; do
+	# -g/--user-agent
+	if [ "$1" = "-g" ] || [ "$1" = "--user-agent" ]; then
+		if [ -z "$2" ]; then
+			print_error "missing STR after $1"
+			exit 1
+		fi
+		USER_AGENT=$2
+		shift 2
+		continue
+	fi
+
 	# -h/--help
 	if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
 		print_help
