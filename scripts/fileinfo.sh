@@ -23,10 +23,10 @@
 #
 # Default settings.
 #
-VERBOSE=0
 API_KEY=${RETDEC_API_KEY-not set}
 API_URL=${RETDEC_API_URL-https://retdec.com/service/api}
 USER_AGENT="retdec-sh/$(uname -s)"
+VERBOSE=0
 
 #
 # Prints a help message to the standard output.
