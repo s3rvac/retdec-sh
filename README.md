@@ -44,7 +44,7 @@ Requirements
 * shell (`bash`, `dash`, ...)
 * [curl](http://curl.haxx.se/)
 
-The script should work with any POSIX shell, although they have been tested
+The scripts should work with any POSIX shell, although they have been tested
 only on `bash` and `dash`.
 
 Installation
