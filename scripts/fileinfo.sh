@@ -13,7 +13,7 @@
 # Software requirements:
 #
 #  - shell (bash, dash, ...)
-#  - curl (http://curl.haxx.se/)
+#  - curl (https://curl.haxx.se/)
 #
 # Other requirements:
 #
@@ -99,7 +99,7 @@ get_value() {
 # Verify that curl is installed.
 #
 if ! command -v curl > /dev/null 2>&1; then
-	print_error "curl (http://curl.haxx.se/) is not installed"
+	print_error "curl (https://curl.haxx.se/) is not installed"
 	exit 1
 fi
 

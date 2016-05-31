@@ -42,7 +42,7 @@ Requirements
 ------------
 
 * shell (`bash`, `dash`, ...)
-* [curl](http://curl.haxx.se/)
+* [curl](https://curl.haxx.se/)
 
 The scripts should work with any POSIX shell, although they have been tested
 only on `bash` and `dash`.
@@ -78,7 +78,7 @@ Exit Codes
 The scripts may exit with the following codes.
 
 * `0` - everything went OK,
-* `1` - either [curl](http://curl.haxx.se/) is not installed or the given
+* `1` - either [curl](https://curl.haxx.se/) is not installed or the given
   script parameters are invalid,
 * `2` - there was an error during script runtime (e.g. a decompilation failed).
 
