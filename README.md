@@ -85,8 +85,7 @@ The scripts may exit with the following codes.
 Contributions
 -------------
 
-Contributions are welcomed as a pull request. Do not forget to add yourself to
-the `AUTHORS.md` file when you have contributed something!
+Contributions are welcomed as pull requests.
 
 Bug Reporting
 -------------
