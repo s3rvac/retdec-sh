@@ -107,5 +107,7 @@ service from other languages, check out the following projects:
 
 * [retdec-python](https://github.com/s3rvac/retdec-python) - A library and
   tools for accessing the service from Python.
+* [retdec-rust](https://github.com/s3rvac/retdec-rust) - A library and
+  tools for accessing the service from Rust.
 * [retdec-cpp](https://github.com/s3rvac/retdec-cpp) - A library and tools for
   accessing the service from C++.
