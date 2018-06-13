@@ -1,6 +1,18 @@
 retdec-sh
 =========
 
+WARNING
+-------
+
+The [retdec.com](https://retdec.com) decompilation service is to be disabled
+(see the [official
+announcement](https://retdec.com/news/?2018-06-07-New-Version-3-1)). This will
+render the scripts in the present repository non-functional. I will keep the
+repository online in case it is helpful to anyone.
+
+Description
+-----------
+
 Shell scripts for decompiling and analyzing binary files through the
 [retdec.com](https://retdec.com) decompilation service by using their public
 [REST API](https://retdec.com/api/).
